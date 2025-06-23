@@ -1,15 +1,16 @@
+require('dotenv').config();
+
 const express = require('express');
-const { resolve } = require('path');
-
 const app = express();
-const port = 3010;
 
-app.use(express.static('static'));
+// Use your environment variables like this
+const PORT = process.env.PORT;
+const API_KEY = process.env.API_KEY;
 
 app.get('/', (req, res) => {
-  res.sendFile(resolve(__dirname, 'pages/index.html'));
+  res.send(`Your API key is ${API_KEY}`);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
